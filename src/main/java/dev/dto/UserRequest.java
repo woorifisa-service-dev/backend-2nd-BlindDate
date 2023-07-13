@@ -27,7 +27,6 @@ public class UserRequest {
         this.password = password;
     }
 
-
     public UserRequest(final String email, final String password, final String name, final boolean gender, final boolean marry, final boolean couple, final Long age, final Long height) {
         this.email = email;
         this.password = password;

@@ -10,32 +10,35 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "board")
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardId;
+
+    @JoinColumn(name = "userID")
+    private Long userId;
+
     private String title;
     private String content;
 
-    public Board(String title, String content) {
+    public Board(Long userId, String title, String content) {
+        this.userId = userId;
         this.title = title;
         this.content = content;
     }
 
-    public static Board from(BoardRequest boardRequest){
+
+    public static Board from(Long id, BoardRequest boardRequest) {
+        Long userId = id;
         String title = boardRequest.getTitle();
         String content = boardRequest.getContent();
 
-        return new Board(title, content);
+        return new Board(userId, title, content);
     }
 }

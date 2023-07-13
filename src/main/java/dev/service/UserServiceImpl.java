@@ -1,11 +1,14 @@
 package dev.service;
 
+import dev.dto.BoardRequest;
 import dev.entity.User;
 
 import dev.repository.UserRepository;
 import dev.dto.UserRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 @Service
@@ -24,6 +27,17 @@ public class UserServiceImpl implements UserService {
         String email = userRequest.getEmail();
         String password = userRequest.getPassword();
         return UserRequest.from(userRepository.findByEmailAndPassword(email, password).get());
+    }
+
+    @Override
+    public Long findByEmail(String email) {
+        return userRepository.findByEmail(email).get().getUserId();
+    }
+
+    @Override
+    public String findByUserId(Long userId) {
+
+        return userRepository.findByUserId(userId).get().getName();
     }
 
 

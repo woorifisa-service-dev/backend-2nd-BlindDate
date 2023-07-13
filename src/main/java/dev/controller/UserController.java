@@ -9,9 +9,11 @@ import dev.dto.UserRequest;
 
 import dev.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpCookie;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -27,21 +29,24 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public void logIn(@RequestBody UserRequest userRequest, HttpSession httpSession, HttpServletResponse response){
+    public String logIn(@RequestBody UserRequest userRequest, HttpSession httpSession, HttpServletResponse response){
         UserRequest userRequestLogin = userService.findId(userRequest);
-        httpSession.setAttribute("email", userRequestLogin.getEmail());
+        httpSession.setAttribute("user", userRequestLogin);
 
-        String id = httpSession.getId();
-        System.out.println(id);
-        Cookie cookie = new Cookie("id", id);
-
-        cookie.setMaxAge(30 * 60);
-        cookie.setHttpOnly(false);
-
-        response.addCookie(cookie);
-
-
-
+        return userRequestLogin.getName();
     }
+
+    @PostMapping("/logout")
+    public void logOut(HttpSession httpSession){
+        httpSession.invalidate();
+    }
+    // 사용자 이름 가져오기
+    @GetMapping
+    public String getUserName(HttpSession httpSession) {
+        UserRequest user = (UserRequest) httpSession.getAttribute("user");
+        return user.getName();
+    }
+
+
 
 }

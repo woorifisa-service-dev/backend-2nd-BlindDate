@@ -10,6 +10,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,6 +30,8 @@ public class User {
     private Long age;
     private Long height;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "boardId")
+    List<Board> boards = new ArrayList<>();
 
     public User(String email, String password, String name, boolean gender, boolean marry, boolean couple, Long age, Long height) {
         this.email = email;

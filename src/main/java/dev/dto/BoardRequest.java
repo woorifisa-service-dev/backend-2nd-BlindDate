@@ -16,8 +16,6 @@ public class BoardRequest {
         String content = board.getContent();
 
         return new BoardRequest(title, content);
-
-
     }
 
 
