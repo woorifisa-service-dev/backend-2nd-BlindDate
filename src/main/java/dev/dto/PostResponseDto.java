@@ -8,16 +8,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostResponseDto {
+    private Long boardId;
     private String userName;
     private String title;
     private String content;
 
     public static PostResponseDto from(String name, BoardReponse boardReponse){
+        Long boardId = boardReponse.getBoardId();
         String userName = name;
         String title = boardReponse.getTitle();
         String content = boardReponse.getContent();
 
-        return new PostResponseDto(userName, title, content);
+        return new PostResponseDto(boardId,userName, title, content);
 
     }
 

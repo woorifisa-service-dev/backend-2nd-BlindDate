@@ -22,6 +22,11 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    @GetMapping
+    public String getUserName(HttpSession httpSession) {
+        UserRequest user = (UserRequest) httpSession.getAttribute("user");
+        return user.getName();
+    }
 
     @PostMapping
     public UserRequest signUp(@RequestBody UserRequest userRequest) {
@@ -41,11 +46,6 @@ public class UserController {
         httpSession.invalidate();
     }
     // 사용자 이름 가져오기
-    @GetMapping
-    public String getUserName(HttpSession httpSession) {
-        UserRequest user = (UserRequest) httpSession.getAttribute("user");
-        return user.getName();
-    }
 
 
 

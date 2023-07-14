@@ -9,15 +9,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardReponse {
+    private Long boardId;
     private String title;
     private String content;
     private Long userId;
 
     public static BoardReponse from(Board board){
-
+        Long boardId = board.getBoardId();
         String title = board.getTitle();
-        String content = board.getTitle();
+        String content = board.getContent();
         Long userId = board.getUserId();
-        return new BoardReponse(title, content, userId);
+        return new BoardReponse(boardId,title, content, userId);
     }
 }
