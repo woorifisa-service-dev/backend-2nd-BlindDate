@@ -52,6 +52,7 @@ const Home = () => {
   };
 
   const signUp = () => {
+    axios.defaults.withCredentials = true;
     axios.post("http://43.200.2.180:8080/users", {
       email: email,
       password: pw,
