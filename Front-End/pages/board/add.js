@@ -15,7 +15,7 @@ const Home = () => {
 
   const addBoard = () => {
     axios.defaults.withCredentials = true;
-    axios.post("http://43.200.2.180:8080/boards", {
+    axios.post("http://3.36.2.128:8080/boards", {
       title: title,
       content: content,
     });
