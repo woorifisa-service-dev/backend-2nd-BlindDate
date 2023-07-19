@@ -22,7 +22,7 @@ const LogIn = () => {
     try {
       axios.defaults.withCredentials = true;
       await axios
-        .post("http://localhost:8080/users/login", {
+        .post("http://43.200.2.180:8080/users/login", {
           email: email,
           password: pw,
         })
@@ -35,7 +35,7 @@ const LogIn = () => {
     }
   };
   const getCookie = async () => {
-    axios.get("http://localhost:8080/users");
+    axios.get("http://43.200.2.180:8080/users");
   };
 
   return (

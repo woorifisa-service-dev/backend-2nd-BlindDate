@@ -52,7 +52,7 @@ const Home = () => {
   };
 
   const signUp = () => {
-    axios.post("http://localhost:8080/users", {
+    axios.post("http://43.200.2.180:8080/users", {
       email: email,
       password: pw,
       name: name,

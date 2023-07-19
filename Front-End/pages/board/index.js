@@ -12,14 +12,14 @@ const Board = () => {
   };
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get("http://localhost:8080/users").then((response) => {
+    axios.get("http://43.200.2.180:8080/users").then((response) => {
       setName(response.data);
     });
   }, []);
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get("http://localhost:8080/boards").then((response) => {
+    axios.get("http://43.200.2.180:8080/boards").then((response) => {
       console.log(response);
     }, []);
   });
